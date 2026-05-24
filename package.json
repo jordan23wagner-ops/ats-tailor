@@ -1,0 +1,9 @@
+{
+  "name": "ats-tailor",
+  "version": "1.0.0",
+  "description": "ATS Resume Tailor — Vercel serverless API",
+  "type": "module",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.52.0"
+  }
+}
