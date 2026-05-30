@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FlagCheck — Privacy Policy</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #08080f;
+      color: #e8e8f0;
+      line-height: 1.7;
+      padding: 48px 24px;
+    }
+    .container { max-width: 680px; margin: 0 auto; }
+    .logo { display: flex; align-items: center; gap: 10px; margin-bottom: 40px; }
+    .logo-flag { font-size: 24px; color: #ffd60a; }
+    .logo-text { font-size: 20px; font-weight: 700; letter-spacing: -0.3px; }
+    h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+    .updated { font-size: 13px; color: #5a5a78; margin-bottom: 40px; }
+    h2 { font-size: 16px; font-weight: 700; color: #ffd60a; margin: 32px 0 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+    p { font-size: 14px; color: #c0c0d0; margin-bottom: 12px; }
+    ul { padding-left: 20px; margin-bottom: 12px; }
+    li { font-size: 14px; color: #c0c0d0; margin-bottom: 6px; }
+    a { color: #64ffda; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .highlight {
+      background: rgba(255,214,10,0.06);
+      border: 1px solid rgba(255,214,10,0.15);
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin: 24px 0;
+    }
+    .highlight p { color: #e8e8f0; margin: 0; }
+    hr { border: none; border-top: 1px solid #22222e; margin: 40px 0; }
+    footer { font-size: 12px; color: #5a5a78; margin-top: 40px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <div class="logo">
+      <span class="logo-flag">⚑</span>
+      <span class="logo-text">FlagCheck</span>
+    </div>
+
+    <h1>Privacy Policy</h1>
+    <p class="updated">Last updated: May 30, 2026</p>
+
+    <div class="highlight">
+      <p><strong>Short version:</strong> FlagCheck reads job postings and optionally your resume to give you analysis. Your resume is stored only on your own device. We do not collect, sell, or store your personal data on our servers.</p>
+    </div>
+
+    <h2>What We Collect</h2>
+    <p>FlagCheck processes the following data to provide its service:</p>
+    <ul>
+      <li><strong>Job description text</strong> — the text content of the job posting page you choose to scan. This is sent to our analysis API and to Anthropic's Claude AI for processing.</li>
+      <li><strong>Resume text (optional)</strong> — if you upload a resume, the extracted text is stored locally on your device using Chrome's local storage. It is sent to our API only when you perform a scan.</li>
+      <li><strong>Scan count</strong> — a number tracking how many free scans you have used, stored locally on your device only.</li>
+      <li><strong>License key (if applicable)</strong> — stored locally on your device only.</li>
+    </ul>
+
+    <h2>What We Do NOT Collect</h2>
+    <ul>
+      <li>We do not collect your name, email address, or any personally identifiable information</li>
+      <li>We do not retain job description text or resume text on our servers after analysis is complete</li>
+      <li>We do not track your browsing history or which websites you visit</li>
+      <li>We do not use cookies or any cross-site tracking</li>
+      <li>We do not sell any data to third parties</li>
+    </ul>
+
+    <h2>How Your Data Is Used</h2>
+    <p>When you click "Scan This Job," the text from the current job posting (and optionally your resume text) is sent to our serverless API hosted on Vercel, which forwards it to Anthropic's Claude AI API for analysis. The result is returned to your browser and displayed in the extension. No data is logged or retained on our servers after the response is delivered.</p>
+
+    <h2>Third-Party Services</h2>
+    <p>FlagCheck uses the following third-party services:</p>
+    <ul>
+      <li><strong>Anthropic Claude API</strong> — processes job description and resume text to generate analysis. Subject to <a href="https://www.anthropic.com/legal/privacy" target="_blank">Anthropic's Privacy Policy</a>.</li>
+      <li><strong>Vercel</strong> — hosts our serverless API endpoints. Subject to <a href="https://vercel.com/legal/privacy-policy" target="_blank">Vercel's Privacy Policy</a>.</li>
+    </ul>
+
+    <h2>Data Storage</h2>
+    <p>All user data (resume text, scan count, license key) is stored exclusively in Chrome's local storage on your own device. This data is never transmitted to our servers except as part of an active scan request, and is never shared with third parties.</p>
+
+    <h2>Children's Privacy</h2>
+    <p>FlagCheck is not directed at children under 13 and we do not knowingly collect data from children.</p>
+
+    <h2>Changes to This Policy</h2>
+    <p>We may update this privacy policy from time to time. The date at the top of this page reflects when it was last revised. Continued use of the extension after changes constitutes acceptance of the updated policy.</p>
+
+    <h2>Contact</h2>
+    <p>If you have questions about this privacy policy or FlagCheck's data practices, contact us at: <a href="mailto:Jordan23Wagner@gmail.com">Jordan23Wagner@gmail.com</a></p>
+
+    <hr>
+    <footer>© 2026 FlagCheck. All rights reserved.</footer>
+
+  </div>
+</body>
+</html>
