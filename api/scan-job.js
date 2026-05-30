@@ -25,7 +25,7 @@ export default async function handler(req, res) {
     const trimmed = jobText.slice(0, 6000); // cap tokens
 
     const message = await client.messages.create({
-      model: "claude-sonnet-4-20250514",
+      model: "claude-sonnet-4-6",
       max_tokens: 1024,
       messages: [
         {
