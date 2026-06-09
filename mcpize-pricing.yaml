@@ -1,0 +1,10 @@
+pricing:
+  protocol: "x402"
+  network: "base"
+  recipient: "0x656cDff13D9076325774E80Ac617b403127a8A85"
+  asset: "usdc"
+  tools:
+    - name: "analyze"
+      price: "0.01"
+      description: "Analyzes job descriptions for ATS compatibility, red flags, salary
+        benchmarks, and keyword optimization. Returns structured JSON scores."
