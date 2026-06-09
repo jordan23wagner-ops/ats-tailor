@@ -1,15 +1,15 @@
 {
   "name": "ats-tailor",
   "version": "1.0.0",
-  "description": "ATS Resume Tailor - Vercel serverless API",
+  "description": "ATS Resume Tailor - MCP server for job description analysis",
   "type": "module",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "build": "echo 'no build step'"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.52.0",
-    "@modelcontextprotocol/sdk": "^1.29.0",
     "express": "^4.18.2",
-    "zod": "^4.4.3"
+    "zod": "^3.22.4"
   }
 }
