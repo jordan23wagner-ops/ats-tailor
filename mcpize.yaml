@@ -1,0 +1,25 @@
+# MCPize Configuration
+# Docs: https://mcpize.com/docs/mcpize-yaml
+
+version: 1
+
+name: "ATS Tailor"
+slug: "ats-tailor"
+
+runtime: typescript
+entry: "api/analyze.js"
+
+build:
+  install: "npm install"
+
+start:
+  type: http
+  command: "node"
+  args:
+    - "api/analyze.js"
+
+bridge:
+  mode: http
+
+credentials:
+  - name: "RESEND_API_KEY"
