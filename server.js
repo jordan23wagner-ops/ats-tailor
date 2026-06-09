@@ -2,14 +2,14 @@ import express from 'express';
 const app = express();
 app.use(express.json());
 
-app.options('/api/mcp', (req, res) => {
+app.options('/', (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   res.status(200).end();
 });
 
-app.post('/api/mcp', async (req, res) => {
+app.post('/', async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   const { method, params, id } = req.body || {};
 

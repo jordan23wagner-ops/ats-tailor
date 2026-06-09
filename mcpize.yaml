@@ -1,6 +1,5 @@
-@"
 transport: http
-mcpPath: /api/mcp
+mcpPath: /
 entryPoint: server.js
 runtime: nodejs
 
@@ -13,8 +12,3 @@ pricing:
     - name: "analyze_job"
       price: "0.01"
       description: "Analyzes job descriptions for ATS compatibility, red flags, salary benchmarks, and keyword optimization. Returns structured JSON scores."
-"@ | Set-Content mcpize.yaml
-
-git add .
-git commit -m "fix: add entryPoint and runtime to mcpize.yaml"
-git push
