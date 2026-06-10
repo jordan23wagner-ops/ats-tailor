@@ -1,7 +1,5 @@
 transport: http
 mcpPath: /
-entryPoint: server.js
-runtime: typescript
 
 pricing:
   protocol: "x402"

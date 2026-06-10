@@ -2,14 +2,7 @@ import express from 'express';
 const app = express();
 app.use(express.json());
 
-app.options('/', (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  res.status(200).end();
-});
-
-app.post('/', async (req, res) => {
+const mcpHandler = async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   const { method, params, id } = req.body || {};
 
@@ -42,7 +35,17 @@ app.post('/', async (req, res) => {
     }
   }
   res.status(400).json({ jsonrpc: '2.0', id, error: { code: -32601, message: 'Method not found' }});
+};
+
+app.options('*', (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.status(200).end();
 });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(MCP server running on port ));
+app.post('/', mcpHandler);
+app.post('/api/mcp', mcpHandler);
+
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => console.log(MCP server running on port +PORT));
