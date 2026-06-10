@@ -2,6 +2,13 @@ import express from 'express';
 const app = express();
 app.use(express.json());
 
+app.options('*', (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.status(200).end();
+});
+
 const mcpHandler = async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   const { method, params, id } = req.body || {};
@@ -13,11 +20,14 @@ const mcpHandler = async (req, res) => {
       serverInfo: { name: 'flagcheck-analyzer', version: '1.0.0' }
     }});
   }
+  if (method === 'notifications/initialized') {
+    return res.json({ jsonrpc: '2.0', id, result: {} });
+  }
   if (method === 'tools/list') {
     return res.json({ jsonrpc: '2.0', id, result: { tools: [{
       name: 'analyze_job',
       description: 'Analyzes a job description for ATS compatibility, red flags, salary benchmarks, and keyword optimization.',
-      inputSchema: { type: 'object', properties: { job_description: { type: 'string' } }, required: ['job_description'] }
+      inputSchema: { type: 'object', properties: { job_description: { type: 'string', description: 'The job description text to analyze' } }, required: ['job_description'] }
     }]}});
   }
   if (method === 'tools/call') {
@@ -34,18 +44,23 @@ const mcpHandler = async (req, res) => {
       }});
     }
   }
-  res.status(400).json({ jsonrpc: '2.0', id, error: { code: -32601, message: 'Method not found' }});
+  res.json({ jsonrpc: '2.0', id, result: {} });
 };
 
-app.options('*', (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  res.status(200).end();
-});
-
+// Handle all paths MCPize probes
 app.post('/', mcpHandler);
+app.post('/mcp', mcpHandler);
 app.post('/api/mcp', mcpHandler);
 
+// SSE endpoint for older transport
+app.get('/sse', (req, res) => {
+  res.setHeader('Content-Type', 'text/event-stream');
+  res.setHeader('Cache-Control', 'no-cache');
+  res.setHeader('Connection', 'keep-alive');
+  res.write('data: {}\n\n');
+});
+
+app.get('/health', (req, res) => res.json({ status: 'ok' }));
+
 const PORT = process.env.PORT || 8080;
-app.listen(PORT, () => console.log(MCP server running on port +PORT));
+app.listen(PORT, () => console.log('MCP server running on port ' + PORT));
