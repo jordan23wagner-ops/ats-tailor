@@ -7,11 +7,26 @@ const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 export default async function handler(req, res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, X-Api-Key");
 
   if (req.method === "OPTIONS") return res.status(200).end();
   if (req.method !== "POST")
     return res.status(405).json({ error: "Method not allowed" });
+
+  // --- Access gate ----------------------------------------------------------
+  // This endpoint was previously wide open while making paid Anthropic API
+  // calls, so anyone who found the URL could burn our credits indefinitely.
+  // Gated with the same shared secret as /api/analyze so there is one
+  // consistent door rather than a locked front and an open side entrance.
+  const providedKey = req.headers["x-api-key"];
+  const expectedKey = process.env.FLAGCHECK_API_KEY;
+  if (!expectedKey) {
+    console.error("FLAGCHECK_API_KEY is not configured - refusing all requests");
+    return res.status(500).json({ error: "Server misconfigured: access control not set up" });
+  }
+  if (!providedKey || providedKey !== expectedKey) {
+    return res.status(401).json({ error: "Missing or invalid x-api-key header" });
+  }
 
   try {
     const { jobText, resumeText } = req.body;
@@ -48,7 +63,7 @@ export default async function handler(req, res) {
   "coverLetterHook": null`;
 
     const message = await client.messages.create({
-      model: "claude-sonnet-4-6",
+      model: "claude-sonnet-5",
       max_tokens: 1200,
       messages: [
         {

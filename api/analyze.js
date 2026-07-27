@@ -62,7 +62,7 @@ ${jobDescription}`;
 
 try {
   const message = await client.messages.create({
-    model: "claude-sonnet-4-5",
+    model: "claude-sonnet-5",
     max_tokens: 1500,
     system: "You are an expert ATS analyst. Respond with valid JSON only - no markdown, no explanation.",
     messages: [{ role: "user", content: userMessage }],
@@ -85,7 +85,7 @@ try {
   return respond(res, 200, {
     success: true,
     data: parsed,
-    meta: { model: "claude-sonnet-4-5", resume_chars: resume.length, jd_chars: jobDescription.length },
+    meta: { model: "claude-sonnet-5", resume_chars: resume.length, jd_chars: jobDescription.length },
   });
 } catch (err) {
   console.error("Claude API error:", err);
